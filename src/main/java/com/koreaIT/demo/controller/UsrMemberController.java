@@ -106,7 +106,7 @@ public class UsrMemberController {
 			return Util.jsHistoryBack(Util.f("%s는 존재하지 않는 아이디입니다.", loginId));
 		}
 		
-		if(member.getLoginPw().equals(loginPw) == false) {
+		if(memberService.isPwMatched(loginPw, member.getLoginPw()) == false) {
 			return Util.jsHistoryBack("비밀번호를 다시 입력해주세요.");
 		}
 		
