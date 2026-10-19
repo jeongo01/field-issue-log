@@ -18,12 +18,12 @@ public class MemberService {
 	}
 	
 	public void joinMember(String loginId, String loginPw, String name, String nickname, String cellphoneNum, String email) {
-		String encodedPw = passwordEncoder.encode(loginPw);                              // 해시로 변 
+		String encodedPw = passwordEncoder.encode(loginPw);
 		memberDao.joinMember(loginId, encodedPw, name, nickname, cellphoneNum, email);
 	}
 	
 	public boolean isPwMatched(String inputPw, String encodedPw) {
-		return passwordEncoder.matches(inputPw, encodedPw);                             // 입력값, DB값 순서
+		return passwordEncoder.matches(inputPw, encodedPw);
 	}
 	
 	public Member getMemberById(int id) {

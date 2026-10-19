@@ -57,19 +57,23 @@
 					</div>
 					<div>
 						<label class="block text-center text-sm">상태</label>
-						<select class="select select-bordered select-info w-full mt-1" name="status">
+						<c:choose>
 							<c:when test="${article.status == '해결'}">
 								해결 <span class="text-sm opacity-60">다시 열기</span>
 							</c:when>
-							<option>진행 중</option>
-							<option>협의 중</option>
-							<option>보류</option>	
-						</select>
+							<c:otherwise>
+								<select class="select select-bordered select-info w-full mt-1" name="status">
+									<option>진행 중</option>
+									<option>협의 중</option>
+									<option>보류</option>	
+								</select>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				
 				<div class="mt-4">
-					<label class="text-sm">내용</label>
+					<label class="text-sm">이슈 사항</label>
 					<div class="toast-ui-editor mt-1"></div>
 				</div>
 				

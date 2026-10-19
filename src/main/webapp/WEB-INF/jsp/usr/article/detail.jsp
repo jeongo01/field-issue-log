@@ -132,13 +132,13 @@
 							<a class="btn btn-outline btn-success btn-sm" href="doResolve?id=${article.id }" onclick="if(confirm('해결 처리하시겠습니까 ?') == false) return false;">해결 처리</a>
 						</c:if>
 						<c:if test="${article.status == '해결'}">
-							<a class="btn btn-outline btn-sm" href="doReopen?id=${article.id }" onclick="if(confirm('이슈사항을 열겠습니까 ?') == false) return false">이슈 열기</a>
+							<a class="btn btn-outline btn-sm" href="doReopen?id=${article.id }" onclick="if(confirm('이슈 사항을 수정 하시겠습니까 ?') == false) return false">다시 열기</a>
 						</c:if>
 					</c:if>
 					
 					<c:if test="${rq.loginedMemberId == article.memberId}">
 						<div class="flex gap-2">
-							<a class="btn btn-outline btn-sm" href="modify?id=${article.id }">수정</a>
+							<a class="btn btn-outline btn-sm" href="modify?id=${article.id }">게시글 수정</a>
 							<a class="btn btn-outline btn-sm" href="doDelete?id=${article.id }" onclick="if(confirm('삭제 하시겠습니까?') == false) return false;" >삭제</a>
 						</div>
 					</c:if>				
@@ -259,11 +259,11 @@
 						return;
 					}
 					
-					replyModify_cancle(replyId) // 수정 폼을 원래 댓글 모양으로 되돌린다.
+					replyModify_cancle(replyId)
 					
 					let replyContent = $('#' + replyId);
-					replyContent.find('.reply-body').html(data.data.forPrintBody);                 // 내용 교체
-					replyContent.find('.reply-date').text(data.data.updateDate.substring(0, 16));  // 수정일 교체
+					replyContent.find('.reply-body').html(data.data.forPrintBody);
+					replyContent.find('.reply-date').text(data.data.updateDate.substring(0, 16));
 				},
 				error : function(xhr, status, error) {
 					console.error("ERROR: " + status + " - " + error);

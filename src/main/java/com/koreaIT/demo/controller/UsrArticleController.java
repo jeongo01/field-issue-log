@@ -245,7 +245,7 @@ public class UsrArticleController {
 		
 		articleService.resolveArticle(id, rq.getLoginedMemberId());
 		
-		return Util.jsReplace("해결 처리 완료", Util.f("detail?id=%d", id));
+		return Util.jsReplace("", Util.f("detail?id=%d", id));
 	}
 	
 	@RequestMapping("/usr/article/doReopen")
@@ -263,7 +263,7 @@ public class UsrArticleController {
 		
 		articleService.reopenArticle(id);
 		
-		return Util.jsReplace("이슈를 다시 열었습니다.", Util.f("detail?id=%d", id));
+		return Util.jsReplace("", Util.f("detail?id=%d", id));  // msg 내용이 있으니 이중 문구가 나와서. 빈 문자열로 변경
 		
 	}
 }

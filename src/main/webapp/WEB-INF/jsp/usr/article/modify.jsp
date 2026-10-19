@@ -76,7 +76,7 @@
 							<td><input class="input input-bordered input-info w-96" name="title" type="text" value="${article.title }" placeholder="제목을 입력해주세요."/></td>
 						</tr>
 						<tr>
-							<th>내용</th>
+							<th>이슈 사항</th>
 							<td>
 								<div class="toast-ui-editor">
 									<script type="text/x-template">${article.body }</script>
