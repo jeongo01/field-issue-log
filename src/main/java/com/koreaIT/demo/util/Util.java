@@ -55,5 +55,16 @@ public class Util {
 					</script>
 				""", msg, url);
 	}
+	
+	public static String escapeHtml(String str) {
+		if(str == null) {
+			return "";
+		}
+		return str.replace("&", "&amp;")
+				  .replace("<", "&lt;")
+				  .replace(">", "&gt;")
+				  .replace("\"", "&quot;")
+				  .replace("'", "&#39;");
+	}
 
 }

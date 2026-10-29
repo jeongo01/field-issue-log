@@ -1,5 +1,7 @@
 package com.koreaIT.demo.vo;
 
+import com.koreaIT.demo.util.Util;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ public class Reply {
 	private String writerName;
 	
 	public String getForPrintBody() {
-		return this.body.replaceAll("\n", "<br />");
+		return Util.escapeHtml(this.body).replaceAll("\n", "<br />");
 	}
 	
 }
