@@ -1,6 +1,10 @@
 package com.koreaIT.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,9 +39,9 @@ public class UsrReplyController {
 		return Util.f("<script>location.replace('../article/detail?id=%d')</script>", relId);
 	}
 	
-	@RequestMapping("/usr/reply/getReplyContent")
+	@GetMapping("/usr/replies/{id}")
 	@ResponseBody
-	public ResultData<Reply> getReplyContent(int id) {
+	public ResultData<Reply> getReplyContent(@PathVariable int id) {
 		
 		Reply reply = replyService.forPrintReply(id);
 				
@@ -73,9 +77,9 @@ public class UsrReplyController {
 		
 	}
 	
-	@RequestMapping("/usr/reply/doModifyAjax")
+	@PutMapping("/usr/replies/{id}")
 	@ResponseBody
-	public ResultData<Reply> doModifyAjax(int id, String body) {
+	public ResultData<Reply> doModifyAjax(@PathVariable int id, String body) {
 		
 		if(Util.empty(body)) {
 			return ResultData.from("F-1", "내용을 입력해주세요.");
@@ -116,9 +120,9 @@ public class UsrReplyController {
 		
 	}
 	
-	@RequestMapping("/usr/reply/doDeleteAjax")
+	@DeleteMapping("/usr/replies/{id}")
 	@ResponseBody
-	public ResultData<Reply> doDeleteAjax(int id) {
+	public ResultData<Reply> doDeleteAjax(@PathVariable int id) {
 		
 		Reply reply = replyService.getReplyById(id);
 		

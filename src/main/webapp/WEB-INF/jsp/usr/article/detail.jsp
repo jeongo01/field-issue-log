@@ -170,11 +170,8 @@
 			}
 			
 			$.ajax({
-				url : "../reply/getReplyContent",
+				url : "../replies/" + replyId,
 				method : "get",
-				data : {
-					"id" : replyId
-				},
 				dataType : "json",
 				success : function(data){ 
 					
@@ -219,9 +216,8 @@
 			}
 			
 			$.ajax({
-				url : "../reply/doDeleteAjax",
-				method : "post",
-				data : { "id" : replyId },
+				url : "../replies/" + replyId,
+				method : "delete",
 				dataType : "json",
 				success : function(data) {
 					if (data.success == false) {
@@ -246,10 +242,9 @@
 			}
 			
 			$.ajax ({
-				url: "../reply/doModifyAjax",
-				method: "post",
+				url: "../replies/" + replyId,
+				method: "put",
 				data: {
-					"id": replyId,
 					"body": form.body.value		
 				},
 				dataType: "json",
