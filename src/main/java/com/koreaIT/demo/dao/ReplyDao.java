@@ -25,6 +25,11 @@ public interface ReplyDao {
 	public void writeArticle(int loginedMemberId, String relTypeCode, int relId, String body);
 
 	@Select("""
+			SELECT LAST_INSERT_ID()
+			""")
+	public int getLastInsertId();
+
+	@Select("""
 			SELECT R.*, M.nickname AS writerName
 				FROM reply AS R
 				INNER JOIN `member` AS M

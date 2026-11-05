@@ -4,8 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreaIT.demo.service.ReplyService;
@@ -26,17 +26,17 @@ public class UsrReplyController {
 	}
 	
 	
-	@RequestMapping("/usr/reply/doWrite")
+	@PostMapping("/usr/replies")
 	@ResponseBody
-	public String doWrite(String relTypeCode, int relId, String body) {
-		
+	public ResultData<Reply> doWriteAjax(String relTypeCode, int relId, String body) {
+
 		if(Util.empty(body)) {
-			return Util.jsHistoryBack("내용을 입력해주세요.");
+			return ResultData.from("F-1", "내용을 입력해주세요.");
 		}
-		
-		replyService.writeReply(rq.getLoginedMemberId(), relTypeCode, relId, body);
-		
-		return Util.f("<script>location.replace('../article/detail?id=%d')</script>", relId);
+
+		int id = replyService.writeReply(rq.getLoginedMemberId(), relTypeCode, relId, body);
+
+		return ResultData.from("S-1", "댓글을 작성 하셨습니다.", replyService.forPrintReply(id));
 	}
 	
 	@GetMapping("/usr/replies/{id}")
