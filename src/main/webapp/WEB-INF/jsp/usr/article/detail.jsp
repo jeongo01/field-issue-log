@@ -242,8 +242,8 @@
 					let addHtml = ` 
 						<form onsubmit="replyModify_submit(this, \${replyId}); return false;">
 							<div class="mt-4 border border-gray-500 rounded-lg p-4">
-								<div class="mb-2">\${data.data.writerName}</div>
-								<textarea class="textarea textarea-bordered textarea-info w-full" name="body" placeholder="댓글을 작성해보세요.">\${data.data.body}</textarea>
+								<div class="mb-2 reply-modify-writer"></div>
+								<textarea class="textarea textarea-bordered textarea-info w-full" name="body" placeholder="댓글을 작성해보세요."></textarea>
 								<div class="flex justify-end">
 									<button onclick="replyModify_cancle(\${replyId});" class="btn btn-outline btn-sm mr-2" type="button">취소</button>
 									<button class="btn btn-outline btn-sm">수정</button>
@@ -253,6 +253,8 @@
 					`;
 					
 					replyContent.empty().html(addHtml);
+					replyContent.find('.reply-modify-writer').text(data.data.writerName);
+					replyContent.find('textarea[name="body"]').val(data.data.body);
 				},
 				error : function(xhr, status, error){
 					console.error("ERROR : " + status + " - " + error);
