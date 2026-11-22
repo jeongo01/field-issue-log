@@ -36,7 +36,7 @@ public class UsrReplyController {
 
 		int id = replyService.writeReply(rq.getLoginedMemberId(), relTypeCode, relId, body);
 
-		return ResultData.from("S-1", "댓글을 작성 하셨습니다.", replyService.forPrintReply(id));
+		return ResultData.from("S-1", "댓글을 작성하셨습니다.", replyService.forPrintReply(id));
 	}
 	
 	@GetMapping("/usr/replies/{id}")

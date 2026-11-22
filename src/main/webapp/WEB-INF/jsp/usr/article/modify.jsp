@@ -86,7 +86,7 @@
 						<tr>
 							<td class="text-center" colspan="2"><button class="btn btn-wide btn-outline btn-sm">수정</button></td>
 						</tr>
-
+	
 					</table>
 				</div>
 			</form>
@@ -96,4 +96,4 @@
 		</div>
 	</section>
 
-	<%@ include file="../common/footer.jsp" %>
+<%@ include file="../common/footer.jsp" %>
