@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 	<c:set var="pageTitle" value="${board.name }"/>
 
@@ -14,7 +15,7 @@
 			<div>
 				<form>
 					<input name="boardId" type="hidden" value="${board.id }"/>
-					<select class="select select-info select-sm" data-value="${searchKeywordType }" name="searchKeywordType">
+					<select class="select select-info select-sm" data-value="${fn:escapeXml(searchKeywordType) }" name="searchKeywordType">
 						<option value="title">제목</option>
 						<option value="body">내용</option>
 						<option value="title, body">제목 + 내용</option>
@@ -32,7 +33,7 @@
 						</c:forTokens>
 					</select>
 					
-					<input class="ml-2 input input-bordered input-info w-60 input-sm" name="searchKeyword" type="text" value="${searchKeyword}" placeholder="검색어를 입력해주세요." maxlength="20"/>
+					<input class="ml-2 input input-bordered input-info w-60 input-sm" name="searchKeyword" type="text" value="${fn:escapeXml(searchKeyword)}" placeholder="검색어를 입력해주세요." maxlength="20"/>
 					
 					<button class="ml-2 btn btn-outline btn-sm">검색</button>
 				</form>
@@ -57,17 +58,17 @@
 					<c:forEach var="article" items="${articles }">
 						<tr class="hover">
 							<td>${article.id }</td>
-							<td class="hover:underline"><a href="detail?id=${article.id }">${article.title }</a></td>
-							<td>${empty article.equipment ? '-' : article.equipment }</td>
+							<td class="hover:underline"><a href="detail?id=${article.id }">${fn:escapeXml(article.title) }</a></td>
+							<td>${empty article.equipment ? '-' : fn:escapeXml(article.equipment) }</td>
 							<td>
 								<span class="badge badge-sm
 									${article.status == '해결' ? 'badge-success' : '' }
 									${article.status == '진행 중' ? 'badge-warning' : '' }
 									${article.status == '협의 중' ? 'badge-info' : ''}">
-									${article.status }
+									${fn:escapeXml(article.status) }
 								</span>
 							</td>
-							<td>${article.writerName }</td>
+							<td>${fn:escapeXml(article.writerName) }</td>
 							<td>${article.regDate.substring(2, 16) }</td>
 							<td>${article.hitCnt }</td>
 							<td>${article.point }</td>

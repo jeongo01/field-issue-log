@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 	<c:set var="pageTitle" value="DETAIL"/>
 	<c:set var="hidePageTitle" value="true"/>
@@ -74,34 +75,34 @@
 			
 			<div class="mt-2 p-2 rounded-lg flex justify-between items-center gap-4">
 				<div class="text-xl font-bold break-all">
-					<span class="text-sm opacity-60 mr-2">제목</span>${article.title }
+					<span class="text-sm opacity-60 mr-2">제목</span>${fn:escapeXml(article.title) }
 				</div>
 				<div class="shrink-0 text-gray-400">
-					<span class="text-sm opacity-60 mr-2">작성자</span>${article.writerName }	
+					<span class="text-sm opacity-60 mr-2">작성자</span>${fn:escapeXml(article.writerName) }	
 				</div>
 			</div>
 			
 			<div class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
 				<div class="p-3 border border-gray-600 rounded-lg flex justify-center items-center gap-3">
 					<div class="opacity-60">장비명:</div>
-					<div>${empty article.equipment ? '-' : article.equipment }</div>
+					<div>${empty article.equipment ? '-' : fn:escapeXml(article.equipment) }</div>
 				</div>
 				
 				<div class="p-3 border border-gray-600 rounded-lg flex justify-center items-center gap-3">
 					<div class="opacity-60">작업 단계:</div>
-					<div>${empty article.workStage ? '-' : article.workStage }</div>
+					<div>${empty article.workStage ? '-' : fn:escapeXml(article.workStage) }</div>
 				</div>
 				
 				<div class="p-3 border border-gray-600 rounded-lg flex justify-center items-center gap-3">
 					<div class="opacity-60">원인 구분:</div>
-					<div>${article.causeType }</div>
+					<div>${fn:escapeXml(article.causeType) }</div>
 				</div>
 				
 				<div class="p-3 border border-gray-600 rounded-lg flex justify-center items-center gap-3">
 					<div class="opacity-60">상태:</div>
-					<div>${article.status }</div>
+					<div>${fn:escapeXml(article.status) }</div>
 					<c:if test="${article.status == '해결'}">
-						<div class="text-xs opacity-60">(해결자: ${article.resolverName })</div>
+						<div class="text-xs opacity-60">(해결자: ${fn:escapeXml(article.resolverName) })</div>
 					</c:if>
 				</div>	
 			</div>
@@ -335,7 +336,7 @@
 				<c:forEach var="reply" items="${replies }">
 					<div id="${reply.id }" class="py-3 border-b border-gray-700 last:border-b-0">
 						<div class="flex items-start gap-4">
-							<div class="w-28 shrink-0 truncate text-yellow-500">${reply.writerName }</div>
+							<div class="w-28 shrink-0 truncate text-yellow-500">${fn:escapeXml(reply.writerName) }</div>
 							<div class="reply-body flex-grow break-all">${reply.getForPrintBody() }</div>
 							<div class="reply-date shrink-0 pt-1 text-xs text-gray-400">${reply.updateDate.substring(0, 16) }</div>
 							<div class="w-8 shrink-0">
@@ -361,7 +362,7 @@
 					<input type="hidden" name="relTypeCode" value="article" />
 					<input type="hidden" name="relId" value="${article.id }"/>
 					<div class="mt-4 border border-gray-500 rounded-lg p-4" >
-						<div class="mb-2">${rq.loginedMemberNickname }</div>
+						<div class="mb-2">${fn:escapeXml(rq.loginedMemberNickname) }</div>
 						<textarea class="textarea textarea-bordered textarea-info w-full" name="body" placeholder="댓글 작성하기"></textarea>
 						<div class="flex justify-end"><button class="btn btn-outline btn-sm">작성</button></div>
 					</div>
