@@ -109,7 +109,7 @@
 			
 			<div class="mt-3 p-4 border border-gray-600 rounded-lg min-h-[100px]">
 				<div class="toast-ui-viewer">
-					<script type="text/x-template">${article.body }</script>
+					<textarea hidden>${fn:escapeXml(article.body)}</textarea>
 				</div>
 			</div>
 				

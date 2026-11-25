@@ -213,8 +213,8 @@
 	function ToastEditor__init() {
 	  $('.toast-ui-editor').each(function(index, node) {
 	    const $node = $(node);
-	    const $initialValueEl = $node.find(' > script');
-	    const initialValue = $initialValueEl.length == 0 ? '' : $initialValueEl.html().trim();
+	    const $initialValueEl = $node.find(' > textarea');
+	    const initialValue = $initialValueEl.length == 0 ? '' : $initialValueEl.val().trim();
 
 	    const editor = new toastui.Editor({
 	      el: node,
@@ -245,8 +245,8 @@
 	function ToastEditorView__init() {
 	  $('.toast-ui-viewer').each(function(index, node) {
 	    const $node = $(node);
-	    const $initialValueEl = $node.find(' > script');
-	    const initialValue = $initialValueEl.length == 0 ? '' : $initialValueEl.html().trim();
+	    const $initialValueEl = $node.find(' > textarea');
+	    const initialValue = $initialValueEl.length == 0 ? '' : $initialValueEl.val().trim();
 	    $node.empty();
 
 	    let viewer = new toastui.Editor.factory({
