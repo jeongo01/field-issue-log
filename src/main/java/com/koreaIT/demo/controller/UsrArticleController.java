@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.koreaIT.demo.service.ArticleService;
 import com.koreaIT.demo.service.BoardService;
@@ -104,6 +105,16 @@ public class UsrArticleController {
 			end = pagesCnt;
 		}
 		
+		String baseUri = UriComponentsBuilder.newInstance()
+				.queryParam("boardId", boardId)
+				.queryParam("searchKeywordType", "{searchKeywordType}")
+				.queryParam("searchKeyword", "{searchKeyword}")
+				.queryParam("searchStatus", "{searchStatus}")
+				.queryParam("searchCauseType", "{searchCauseType}")
+				.encode()
+				.buildAndExpand(searchKeywordType, searchKeyword, searchStatus, searchCauseType)
+				.toUriString();
+
 		model.addAttribute("articles", articles);
 		model.addAttribute("board", board);
 		model.addAttribute("articlesCnt", articlesCnt);
@@ -112,6 +123,7 @@ public class UsrArticleController {
 		model.addAttribute("pagesCnt", pagesCnt);
 		model.addAttribute("from", from);
 		model.addAttribute("end", end);
+		model.addAttribute("baseUri", baseUri);
 		
 		model.addAttribute("searchKeywordType", searchKeywordType);
 		model.addAttribute("searchKeyword", searchKeyword);

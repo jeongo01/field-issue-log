@@ -86,7 +86,6 @@
 		
 		<div class="mt-2 flex justify-center">
 			<div class="join">
-				<c:set var="baseUri" value="?boardId=${board.id}&searchKeywordType=${searchKeywordType}&searchKeyword=${searchKeyword}&searchStatus=${searchStatus}&searchCauseType=${searchCauseType}" />
 				<c:if test="${from != 1}">
 					<a class="join-item btn btn-square btn-sm" href="${baseUri}&page=1">&lt;&lt;</a>
 					<a class="join-item btn btn-square btn-sm" href="${baseUri}&page=${from - 1}">&lt;</a>
