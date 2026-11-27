@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${pageTitle }</title>
+<title>${fn:escapeXml(pageTitle) }</title>
 
 <link rel="shortcut icon" href="/resource/images/favicon.ico" />
 
@@ -57,7 +58,7 @@
 	<c:if test="${empty hidePageTitle }">
 		<section class="my-3 text-2xl">
 			<div class="container mx-auto px-3">
-				<h1>${pageTitle } PAGE</h1>
+				<h1>${fn:escapeXml(pageTitle) } PAGE</h1>
 			</div>
 		</section>
 	</c:if>
